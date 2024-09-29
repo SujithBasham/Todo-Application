@@ -19,11 +19,21 @@ let todoCount = todoList.length;
 function onDeleteTodo(todoId) {
     let todoElement = document.getElementById(todoId);
     todoItemsContainer.removeChild(todoElement);
+    let deletedTodoItemIndex = todoList.findIndex(function(eachTodo){
+        let eachTodoId = 'todo' + eachTodo.uniqueNo;
+        if(eachTodoId === todoId){
+            return true;
+        }
+        else{
+            return false;
+        }
+    });
+    todoList.splice(deletedTodoItemIndex,1);
 
     // Remove item from the todoList array
-    todoList = todoList.filter(todo => 'todo' + todo.uniqueNo !== todoId);
+    //todoList = todoList.filter(todo => 'todo' + todo.uniqueNo !== todoId);
     // Save the updated list to local storage
-    localStorage.setItem("todoList", JSON.stringify(todoList));
+    //localStorage.setItem("todoList", JSON.stringify(todoList));
 }
 
 // Function to change the status of a To-Do item
